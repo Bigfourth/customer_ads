@@ -1,5 +1,5 @@
 **Ad Banner**
-<meta name="ad-slot-info" content="adunit_1,div_1;adunit_2,div_2">
+< meta name="ad-slot-info" content="adunit_1,div_1;adunit_2,div_2">
 
 **Show Anchor and Inter**
 
