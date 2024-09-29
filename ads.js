@@ -1,24 +1,30 @@
 function showAds(adUnitId) {
+        // Tách chuỗi adUnitId thành các phần tử slot/div
         var adEntries = adUnitId.split("; ");
+
+        // Duyệt qua từng entry và hiển thị quảng cáo
         adEntries.forEach(function (entry) {
             var [adSlotId, adDivId] = entry.split(", ").map(str => str.trim());
 
-            // Nếu thiếu adSlotId hoặc adDivId, bỏ qua
-            if (!adSlotId || !adDivId) {
-                console.error("Invalid ad entry:", entry);
-                return;
-            }
+            // Kiểm tra nếu adDivId tồn tại trên trang trước khi tiếp tục
             var adDivElement = document.getElementById(adDivId);
             if (!adDivElement) {
                 console.error(`Ad div ${adDivId} not found`);
                 return;
             }
-            console.log(`Displaying ad: ${adSlotId} in ${adDivId}`);
+
+            // Hiển thị quảng cáo cho từng slot
             googletag.cmd.push(function () {
-                googletag.defineSlot(adSlotId, [[300, 250]], adDivId).addService(googletag.pubads());
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-                googletag.display(adDivId);
+                var slot = googletag.defineSlot(adSlotId, [[300, 250]], adDivId).addService(googletag.pubads());
+
+                if (slot) {
+                    googletag.pubads().enableSingleRequest();
+                    googletag.enableServices();
+                    googletag.display(adDivId); // Gọi display sau khi defineSlot thành công
+                    console.log(`Displaying ad: ${adSlotId} in ${adDivId}`);
+                } else {
+                    console.error(`Slot not defined for ${adSlotId}`);
+                }
             });
         });
     }
