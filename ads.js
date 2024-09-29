@@ -53,9 +53,10 @@ function showAds(adUnitId) {
     }
     (function () {
         window.googletag = window.googletag || { cmd: [] };
-        showAdFromMeta();
+        var adUnitId = "";
         var anchorSlotId = "";
         var intertialsSlotId = "";
+        showAds(adUnitId);
         showAnchorAd(anchorSlotId);
         showInterstitialAd(intertialsSlotId);
     })();
