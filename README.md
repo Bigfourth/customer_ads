@@ -1,5 +1,7 @@
 **Ad Banner**
-< meta name="ad-slot-info" content="adunit_1,div_1;adunit_2,div_2">
+<script>
+     var adUnitId = "/adunit_1, div-gpt-ad-1-0; /adunit_2, div-gpt-ad-2-0";
+</script>
 
 **Show Anchor and Inter**
 
