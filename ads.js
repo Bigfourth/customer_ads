@@ -1,12 +1,9 @@
-    function showAdFromMeta() {
-        var metaTag = document.querySelector('meta[name="ad-slot-info"]');
-        if (!metaTag || !metaTag.content) {
-            console.error("Ad slot info not found in meta tag");
-            return;
-        }
-        var adEntries = metaTag.content.split("; ");
+function showAds(adUnitId) {
+        var adEntries = adUnitId.split("; ");
         adEntries.forEach(function (entry) {
             var [adSlotId, adDivId] = entry.split(", ").map(str => str.trim());
+
+            // Nếu thiếu adSlotId hoặc adDivId, bỏ qua
             if (!adSlotId || !adDivId) {
                 console.error("Invalid ad entry:", entry);
                 return;
