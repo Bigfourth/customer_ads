@@ -1,19 +1,12 @@
 function showAds(adUnitId) {
-        // Tách chuỗi adUnitId thành các phần tử slot/div
         var adEntries = adUnitId.split("; ");
-
-        // Duyệt qua từng entry và hiển thị quảng cáo
         adEntries.forEach(function (entry) {
             var [adSlotId, adDivId] = entry.split(", ").map(str => str.trim());
-
-            // Kiểm tra nếu adDivId tồn tại trên trang trước khi tiếp tục
             var adDivElement = document.getElementById(adDivId);
             if (!adDivElement) {
                 console.error(`Ad div ${adDivId} not found`);
                 return;
             }
-
-            // Hiển thị quảng cáo cho từng slot
             googletag.cmd.push(function () {
                 var slot = googletag.defineSlot(adSlotId, [[300, 250]], adDivId).addService(googletag.pubads());
 
